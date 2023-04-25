@@ -1,12 +1,14 @@
 import express from 'express'
 import { renderToString } from 'react-dom/server'
-import { Home } from './Home'
+import { App } from '../client/App'
 
 const server = express()
 
-const content = renderToString(<Home></Home>)
+const content = renderToString(<App></App>)
 
-server.get('*', (req, res) => {
+server.use(express.static('dist')) // 开启静态资源服务
+
+server.get('/', (req, res) => {
   res.send(`
   <html>
     <head>
@@ -14,6 +16,7 @@ server.get('*', (req, res) => {
     </head>
     <body>
       <div id="root">${content}</div>
+      <script src="./client.js"></script>
     </body>
   </html>
 `)

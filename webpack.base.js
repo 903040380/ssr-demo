@@ -1,7 +1,14 @@
 const path = require('path')
+const { DefinePlugin } = require('webpack')
 
+const env = JSON.stringify({ NODE_ENV: 'development' })
 module.exports = {
   mode: 'none',
+  plugins: [
+    new DefinePlugin({
+      'process.env': env,
+    }),
+  ],
   module: {
     rules: [
       {
@@ -28,8 +35,5 @@ module.exports = {
         },
       },
     ],
-  },
-  output: {
-    clean: true,
   },
 }

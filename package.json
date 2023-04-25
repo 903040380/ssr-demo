@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build:client": "webpack --config webpack.client.js --watch",
     "build:server": "webpack --config webpack.server.js --watch",
     "dev:server": "npx nodemon dist/server.js"
   },
